@@ -1,6 +1,7 @@
-function deletePerson(id){
+function deleteItem(id, url){
+	console.log(url + id);
 	$.ajax({
-		url: '/view_products/' + id,
+		url: url + id,
 		type: 'DELETE',
 		success: function(result){
 			window.location.reload(true);

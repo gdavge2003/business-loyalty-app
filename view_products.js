@@ -31,12 +31,12 @@ module.exports = function(){
 
     // routes -----------------------------------------------------------------------------------
     router.get('/', function(req, res){
-        console.log("view_prodicuts gotten!");
+        console.log("view_products gotten!");
         var callbackCount = 0;
         var context = {};
         var mysql = req.app.get('mysql');
 
-        context.jsscripts = ["deleteproduct.js"];
+        context.jsscripts = ["deleteitem.js"];
         getProducts(res, mysql, context, complete);
 
         function complete(){
@@ -69,7 +69,7 @@ module.exports = function(){
         callbackCount = 0;
         var context = {};
         var mysql = req.app.get('mysql');
-        context.jsscripts = ["updateproduct.js"];
+        context.jsscripts = ["updateitem.js"];
         
         getProduct(res, mysql, context, req.params.id, complete);
 

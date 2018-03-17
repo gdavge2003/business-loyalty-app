@@ -1,8 +1,8 @@
-<form id="updateproduct" action="/view_products" method="get">
+<form id="updateitem" action="/view_products" method="get">
 	<fieldset>
 	<legend>Update Product</legend>
 	    Name: <input type="text" name="name" value="{{product.name}}"><br>
 	    Price: <input type="number" name="price" min="0.01" step="0.01" value="{{product.price}}"><br>
-	   <button onclick="updateProduct({{product.id}})">Update</button>
 	</fieldset>
 </form>
+<button onclick="updateItem({{product.id}}, '/view_products/')">Update</button>

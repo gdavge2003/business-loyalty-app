@@ -1,0 +1,32 @@
+<form id="addcustomer" action="/view_customers" method="post">
+    <legend>Manually Add Customer:</legend>
+    <fieldset>
+        Name: <input type="text" name="name"><br>
+        Phone Number: <input type="text" name="phone_number" required><br>
+        <input type="submit" value="Submit">
+    </fieldset>
+</form>
+
+<h1>Customers:</h1>
+
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Phone Number</th>
+        <th>Points</th>
+        <th>Activated?</th>
+    </thead>
+    <tbody>
+        {{#each customers}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{phone_number}}</td>
+            <td>{{points}}</td>
+            <td>{{is_activated}}</td>
+
+            <td><button onclick="deleteItem({{id}}, '/view_customers/')">Delete</button></td>
+            <td><a href="/view_customers/{{id}}">Update</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
