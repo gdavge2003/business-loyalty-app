@@ -1,37 +1,44 @@
+var portNumber = 4000;
+
 var express = require('express');
-var portN = 9987;
-var app = express();
-var handlebars = require('express-handlebars').create({defaultLayout:'main'});
+var mysql = require('./dbcon.js');
 var bodyParser = require('body-parser');
 
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+var app = express();
+var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
 app.engine('handlebars', handlebars.engine);
+app.use(bodyParser.urlencoded({extended:true}));
+app.use('/static', express.static('public'));
 app.set('view engine', 'handlebars');
-app.set('port', portN);
+app.set('port', portNumber);
+app.set('mysql', mysql);
+
 
 //homepage setup
-app.get('/',function(req,res){
-  res.render('home');
+app.get('/',function(req,res,next){
+  var context = {};
+  res.render('home', context)
 });
 
-//about us setup
-app.get('/about-us',function(req,res){
-	res.render('aboutus');
+//manager pages and functionality---------------------------------
+app.get('/manager_main', function(req, res, next) {
+  var context = {};
+  res.render('manager_main', context);
 });
 
-//media setup
-app.get('/media',function(req,res){
-	res.render('media');
-});
+app.use('/view_products', require('./view_products.js'));
+app.use('/view_customers', require('./view_customers.js'));
 
-//sermons setup
-app.get('/sermons',function(req,res){
-	res.render('sermons')
-});
+//END manager pages and functionality------------------------------
 
+
+
+
+
+
+
+//error handling
 app.use(function(req,res){
   res.status(404);
   res.render('404');

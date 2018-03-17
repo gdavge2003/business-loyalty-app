@@ -5,12 +5,22 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	
-	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    {{#each jsscripts}}
+    <script src="/static/js/{{this}}"></script>
+    {{/each}}
 </head>
 <body>
 	<div class="header">
-		<img src="/images/baguette_logo.jpg" alt="LBCSJ Logo" />
+		<img src="/static/images/banner_bread.jpg" alt="Bakery Banner" />
+	</div>
+	<div class="navbar">
+		<a href="/"><span>Home</span></a>
+		<a href="/customer_main"><span>Customer Dashboard</span></a>
+		<a href="/manager_main"><span>Manager Dashboard</span></a>
 	</div>
 	
 	{{{body}}}

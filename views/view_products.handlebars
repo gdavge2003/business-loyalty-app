@@ -1,0 +1,27 @@
+<form id="addproduct" action="/view_products" method="post">
+    <legend>Add Product:</legend>
+    <fieldset>
+        Name: <input type="text" name="name"><br>
+        Price: <input type="number" name="price" min="0.01" step="0.01"><br>
+        <input type="submit" value="Submit">
+    </fieldset>
+</form>
+
+<h1>Products:</h1>
+
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Price</th>
+    </thead>
+    <tbody>
+        {{#each products}}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{price}}</td>
+            <td><button onclick="deletePerson({{id}})">Delete</button></td>
+            <td><a href="/view_products/{{id}}">Update</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

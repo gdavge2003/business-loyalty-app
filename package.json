@@ -23,6 +23,7 @@
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
     "forever": "^0.15.3",
+    "mysql": "^2.15.0",
     "start": "^5.1.0"
   }
 }
