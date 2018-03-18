@@ -1,0 +1,17 @@
+<h1>Visitor Statistics:</h1>
+<p>Some of these customers love your lounge! Maybe reach out to them personally and see they can help you bring more customers in!!</p>
+
+<table>
+    <thead>
+        <th>Customer ID</th>
+        <th>Referrals</th>
+    </thead>
+    <tbody>
+        {{#each results}}
+        <tr>
+            <td>{{referrer_id}}</td>
+            <td>{{referred}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

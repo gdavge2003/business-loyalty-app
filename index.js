@@ -29,6 +29,9 @@ app.get('/manager_main', function(req, res, next) {
 
 app.use('/view_products', require('./view_products.js'));
 app.use('/view_customers', require('./view_customers.js'));
+app.use('/view_visit', require('./view_visit.js'));
+app.use('/view_referrals', require('./view_referrals.js'));
+app.use('/view_products_sold', require('./view_products_sold.js'));
 
 //END manager pages and functionality------------------------------
 
@@ -85,13 +88,8 @@ app.post('/member_check', function(req,res,next){
   });
 });
 
-
-
-
 app.use('/member',require('./member.js'));
 //END customer pages and functionality------------------------------
-
-
 
 //error handling
 app.use(function(req,res){

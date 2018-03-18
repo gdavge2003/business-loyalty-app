@@ -1,0 +1,19 @@
+<h1>Sales Statistics:</h1>
+<p>Hot Diggity! Check out your popular items!</p>
+
+<table>
+    <thead>
+        <th>Item</th>
+        <th>Number Sold</th>
+        <th>Total Profit</th>
+    </thead>
+    <tbody>
+        {{#each results}}
+        <tr>
+            <td>{{item_name}}</td>
+            <td>{{number_sold}}</td>
+            <td>{{total_profit}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
