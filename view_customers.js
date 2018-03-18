@@ -51,6 +51,7 @@ module.exports = function(){
     // points are 0 and activated by default
     router.post('/', function(req, res){
         //console.log("view customers posted!");
+        var context = {};
         var mysql = req.app.get('mysql');
 
         //values for 1st query - initial check
@@ -121,9 +122,7 @@ module.exports = function(){
                 res.end();
             }else{
                 if(results.length){
-                    console.log("phone number exists, not adding.");
-                    res.redirect('view_customers');
-                    res.status(200);
+                    console.log("phone number already exists, not updating.");
                     res.end();
                 }else{
                     mysql.pool.query(sql,inserts,function(error, results, fields){
@@ -139,18 +138,6 @@ module.exports = function(){
                 }
             }
         });
-
-
-    //     sql = mysql.pool.query(sql,inserts,function(error, results, fields){
-    //         if(error){
-    //             console.log("Failed to update customer!");
-    //             res.write(JSON.stringify(error));
-    //             res.end();
-    //         }else{
-    //             res.status(200);
-    //             res.end();
-    //         }
-    //     });
     });
 
     // route to delete. utilizes ajax call from public/js to get the correct ID in the url for deletion

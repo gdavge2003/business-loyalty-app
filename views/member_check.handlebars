@@ -1,0 +1,6 @@
+<p>Thanks for logging in, {{member.name}}. Please click below to proceed to your dashboard.</p>
+
+<form id="redirect_to_dashboard" action="/member" method="post">
+	<input type="submit" value="Proceed to Your Dashboard" />
+	<input type="hidden" name="id" value="{{member.id}}"><br>
+</form>

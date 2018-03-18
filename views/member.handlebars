@@ -1,0 +1,20 @@
+<h2>Member Dashboard</h2>
+<p>Welcome back, {{member.name}}!</p>
+<p>You currently have {{member.points}} points. What would you like to do?</p>
+
+<form id="refer_friend" action="/member/refer_friend" method="post">
+	<fieldset>
+		<legend>Refer a friend</legend>
+		<input type="hidden" name="member_id" value="{{member.id}}">
+		Phone Number: <input type="text" name="friend_number" required><br>
+		<input type="submit" value="Submit">
+	</fieldset>
+</form>
+
+<form id="make_order" action="/member/order_page" method="post">
+	<fieldset>
+		<legend>Make an order</legend>
+		<input type="hidden" name="member_id" value="{{member.id}}">
+		<input type="submit" value="Start">
+	</fieldset>
+</form>

@@ -1,9 +1,9 @@
 <form id="updateitem" action="/view_customers" method="get">
 	<fieldset>
 	<legend>Update Customer</legend>
-	    Name: <input type="text" name="name" value="{{customer.name}}"><br>
-	    Phone Number: <input type="text" name="phone_number" value="{{customer.phone_number}}"><br>
-	    Points: <input type="number" min="0" name="points" value="{{customer.points}}"><br>
+	    Name: <input type="text" name="name" value="{{customer.name}}" required><br>
+	    Phone Number: <input type="text" name="phone_number" value="{{customer.phone_number}}" required><br>
+	    Points: <input type="number" min="0" name="points" value="{{customer.points}}" required><br>
 	</fieldset>
 </form>
 <button onclick="updateItem({{customer.id}}, '/view_customers/')">Update</button>

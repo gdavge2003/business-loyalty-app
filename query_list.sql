@@ -10,7 +10,11 @@ SELECT phone_number FROM customer WHERE phone_number = [phone_number];
 
 # Inserts
 INSERT INTO product (name, price) VALUES ([name, price]);
-INSERT INTO product (name, phone_number, points, is_activated) VALUES [name, phone_number, 0, true];
+INSERT INTO customer (name, phone_number, points, is_activated) VALUES ([name, phone_number, 0, true]);
+INSERT INTO visit (visit_date, customer_id) VALUES ([new Date(), member_id];
+INSERT INTO customer (phone_number, points, is_activated) VALUES ([phone_number, 10, false]);
+INSERT INTO referral (referrer_id, referred_id) VALUES ([customer_id, customer_id2]);
+INSERT INTO customer_order (customer_id) VALUES ([member_id])
 
 # Updates
 UPDATE product SET name = [name], price = [price] WHERE id = [id];

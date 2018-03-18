@@ -1,0 +1,25 @@
+<h1>Items for Order {{order_id}}</h1>
+<p>Hey, thanks for making an order with us today! We appreciate your business. Please select the items you'd like to purchase by specifying the quantity. Afterwards, please click Submit to complete the order.</p>
+
+<form id="buy_products" action="/member/order_page/purchase_final" method="post">
+	<table>
+		<thead>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Quantity</th>
+		</thead>
+		<tbody>
+			{{#each products}}
+			<tr>
+				<td>{{name}}</td>
+				<td>{{price}}</td>
+				<td><input type="number" name="{{id}}" min="0" step="1" value="0"></td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+	<br>
+	<input type="hidden" name="member_id" value="{{member_id}}">
+	<input type="hidden" name="order_id" value="{{order_id}}">
+	<input type="submit" value="Submit Order" />
+</form>
