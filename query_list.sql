@@ -6,6 +6,7 @@ SELECT id, name, price FROM product WHERE id = [id];
 SELECT id, name, phone_number, points, is_activated FROM customer;
 SELECT id, name, phone_number, points, is_activated FROM customer WHERE id = [id];
 SELECT phone_number FROM customer WHERE phone_number = [phone_number];
+SELECT id, price FROM product WHERE id = [id];
 
 
 # Inserts
@@ -15,6 +16,7 @@ INSERT INTO visit (visit_date, customer_id) VALUES ([new Date(), member_id];
 INSERT INTO customer (phone_number, points, is_activated) VALUES ([phone_number, 10, false]);
 INSERT INTO referral (referrer_id, referred_id) VALUES ([customer_id, customer_id2]);
 INSERT INTO customer_order (customer_id) VALUES ([member_id])
+INSERT INTO order_product (order_id, product_id, quantity) VALUES ([order_id, product_id, i]);
 
 # Updates
 UPDATE product SET name = [name], price = [price] WHERE id = [id];

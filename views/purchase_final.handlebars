@@ -1,1 +1,8 @@
-test test
+<p>Purchase successful! Thanks for your purchase.</p>
+<p>Your total comes out to ${{price_total}}.</p>
+<br>
+<p>Click below to return to your dashboard.</p>
+<form id="dashboard_return" action="/member" method="post">
+	<input type="submit" value="Back to Your Dashboard" />
+	<input type="hidden" name="id" value="{{member_id}}"><br>
+</form>

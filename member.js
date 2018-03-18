@@ -15,6 +15,38 @@ module.exports = function(){
         });
     }
 
+    function addProductToOrder(order_id, product_id, quantity, res, mysql, complete) {
+    	var sql = "INSERT INTO order_product (order_id, product_id, quantity) VALUES (?,?,?)";
+    	var inserts = [order_id, product_id, quantity];
+
+    	mysql.pool.query(sql, inserts, function(error, results, fields) {
+    		if(error){
+    			console.log("Failed to insert product-order relationship!");
+                res.write(JSON.stringify(error));
+                res.end();
+    		} else{
+    			complete();
+    		}
+    	});
+    }
+
+    function addPriceToSum(context, product_id, quantity, res, mysql, complete) {
+    	var sql = "SELECT id, price FROM product WHERE id=?";
+    	var inserts = [product_id];
+    	mysql.pool.query(sql, inserts, function(error, results, fields){
+    		if(error){
+    			console.log("Failed to check price!");
+                res.write(JSON.stringify(error));
+                res.end();
+    		} else{
+    			context.price_total += results[0].price*quantity;
+    			complete();
+    		}
+
+
+    	});
+    }
+
     // routes ------------------------------------------------------------------------------
 
     //main page after login
@@ -24,7 +56,7 @@ module.exports = function(){
     	var context = {};
     	var member_id = req.body.id;
 
-    	var sql = "SELECT id, name, phone_number, points, is_activated FROM customer WHERE id=?"
+    	var sql = "SELECT id, name, phone_number, points, is_activated FROM customer WHERE id=?";
     	var inserts = [member_id];
     	mysql.pool.query(sql, inserts, function(error, results, fields){
     		if(error){
@@ -110,9 +142,9 @@ module.exports = function(){
 
     //after making an order submission, update database with order-product + quantity
     router.post('/order_page/purchase_final', function(req, res) {
-    	var price_total = 0;
   		var callbackCount = 0;
   		var context = {};
+  		context.price_total = 0;
 
     	var mysql = req.app.get('mysql');
     	var member_id = parseInt(req.body.member_id);
@@ -121,30 +153,30 @@ module.exports = function(){
     	delete req.body.member_id;
     	delete req.body.order_id;
 
+    	context.member_id = member_id;
+
     	var products = {};
+    	var size = 0;
     	for(var product_id in req.body){
     		if(parseInt(req.body[product_id]) !== 0){
 				products[parseInt(product_id)] = parseInt(req.body[product_id]);
+				size++;
 			}
     	}
 
-    	// for (var i in products){
-    	// 	addProductToOrder(i, products[i], res, mysql, context, complete);
-
-
-    	// }
+    	for (var i in products){
+    		addProductToOrder(order_id, parseInt(i), products[i], res, mysql, complete);
+    		addPriceToSum(context, parseInt(i), products[i], res, mysql, complete);
+    	}
    		
-
-
     	//render after adding entry and calculating for each product
     	function complete(){
+
             callbackCount++;
-            if(callbackCount >= 2*products.length){
+            if(callbackCount >= 2*size){
                 res.render('purchase_final', context);
             }
         }
-
-        res.render('purchase_final', context);
     });
 
     return router;
